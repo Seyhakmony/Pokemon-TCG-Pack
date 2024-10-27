@@ -42,7 +42,7 @@ function nextCard() {
     if (current < FinalCards.length) {
         displayCards();
     } else {
-        alert("You've viewed all the cards! Earned: $" + total + ".\nContinue to open more packs!!!");
+        alert("You've viewed all the cards! Earned: $" + total.toFixed(2) + ".\nContinue to open more packs!!!");
         startCard.src = '../images/pokemon-card.jpg';
         startCard2nd.style.display = 'flex';
     }
@@ -98,7 +98,7 @@ function displayCards() {
         
         cardList.innerHTML =  tempCard;
 
-        displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class="card-click">
+        displayCard = `<li><img src="${card.images.large}" alt="${card.name}">
         </li>`;
         cardDisplay.innerHTML += displayCard;
         
