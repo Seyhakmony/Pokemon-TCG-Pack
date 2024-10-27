@@ -1,0 +1,218 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0; 
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    background-image: url('https://img.freepik.com/free-photo/anime-style-clouds_23-2151071671.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 0;
+    margin: 0; 
+    list-style-type: none; 
+    flex: 1;
+}
+
+#card-list ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+p{
+    font-size: 2em;
+}
+
+#card-display {
+    display: grid;
+    grid-template-columns: repeat(2, 8vw);
+    grid-template-rows: repeat(5, auto); 
+    gap: 1em;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-items: center; 
+    align-items: center; 
+}
+
+.backgroundCards{
+    background-image:  url('../images/card-background.png');
+    background-size: cover;
+    background-position: center; 
+    padding: 3vw;
+    border: 1.5px solid black; 
+    border-radius: 8px;
+}
+
+#card-display ul {
+    width: 8vw;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+#card-display img {
+    width: 8vw;
+    height: auto;
+}
+
+#card-list img {
+    width: 30vw; 
+    height: auto;
+}
+
+
+header img{
+    width: 80vw;
+    height: auto;
+}
+
+.middle img{
+    display: block;
+    width: 30vw; 
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.Bag #Poke-Card2{
+    display: none;
+    width: 20vw; 
+    height: auto;
+    margin-bottom: 1em;
+    mix-blend-mode: unset;
+}
+
+
+.Bag img{
+    width: 8vw;
+    height: auto;
+    margin-left: 10vw;
+    mix-blend-mode: multiply;
+    margin-bottom: 1.5em;
+
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;  
+}
+
+
+.middle{
+    margin-top: 2.5em;
+}
+
+.Bag{
+    
+    text-align: center;
+}
+
+.CardPack, .middle, .Bag {
+    width: 30%;
+    text-align: center;
+}
+
+.CardPack{
+    display: none;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+
+
+.Loading-Screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader-img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    animation: spin-image 2s linear infinite;
+    
+}
+
+.loader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader::before {
+    content: '';
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid black;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    z-index: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-image {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+
+
+
+
+@media (max-width: 650px) {
+    /* #card-display {
+        grid-template-columns: repeat(2, 15vw);
+        gap: 2vw;
+        margin-left: 0.5em;
+    }
+
+    #card-display ul {
+        width: 15vw; 
+    }
+    #card-display img {
+        width: 14vw;
+        height: auto;
+    } */
+
+    p{
+        font-size: 0.75em;
+    }
+}
