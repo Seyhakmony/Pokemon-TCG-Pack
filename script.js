@@ -238,7 +238,7 @@ function bagCollection(){
 }
 
 
-document.getElementById('header').addEventListener('click', function() {
+document.getElementById('arrow').addEventListener('click', function() {
     AllColletedCards.style.display = "none";
 });
 

@@ -236,8 +236,8 @@ header img{
 }
 .header{
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 100%;
     position: relative;
@@ -276,11 +276,20 @@ header img{
     cursor: pointer;
 }
 
-#header {
+#arrow {
     cursor: pointer;
-    margin-bottom: 1em;
+
 }
 
+.arrow {
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+
+
+    margin-left: 1.5em;
+  
+}
 
 
 @media (max-width: 650px) {
