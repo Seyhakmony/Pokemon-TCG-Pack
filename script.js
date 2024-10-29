@@ -4,11 +4,16 @@ const startCard = document.getElementById('Poke-Card');
 const startCard2nd = document.getElementById('Poke-Card2');
 const cardList = document.getElementById('card-list');
 const cardDisplay = document.getElementById('card-display');
+const collectionDisplay = document.getElementById('All-card-display');
+
 const CardPack = document.getElementById('CardPack');
 const loadingScreen = document.getElementById('Loading-Screen');
 const Bag = document.getElementById('Bag');
+const BagImg = document.getElementById('Bag-image');
+const AllColletedCards = document.getElementById('allCards');
 
 let FinalCards = [];
+
 let total = 0;
 let current = 0;
 async function getCard(rarity, Numcards) {
@@ -49,16 +54,17 @@ function nextCard() {
 }
 
 
-function CardInfo(){
+function CardInfo(cost){
     const clickedCard = this.src;
-
     const tempImage = document.getElementById("large-image");
     const tempdiv = document.getElementById("card-Image");
+    const priceDis = tempdiv.querySelector("p"); 
 
     if (tempImage && tempdiv) {
         tempImage.src = clickedCard;
         tempImage.style.display = "block";
         tempdiv.style.display = "flex";
+        priceDis.textContent = `Market Price: $${cost}`;
 
         tempdiv.addEventListener("click", function () {
             tempImage.style.display = "none";
@@ -92,23 +98,26 @@ function displayCards() {
         const cardOptions = priceKeys.filter(key => prices[key].market != null);
 
         const temprare = Math.floor(Math.random() * cardOptions.length);
-
+        let cost = 0
         //For common/uncommon cards:
         if (rarity === 'Common' || rarity === 'Uncommon'){
             if(card.tcgplayer && card.tcgplayer.prices && card.tcgplayer.prices.normal && card.tcgplayer.prices.normal.market != null){
             tempCard += `<img src="${card.images.large}" alt="${card.name}" class="card-click">
                 <p>Market Price: $${card.tcgplayer.prices.normal.market}</p>`;
                 total += card.tcgplayer.prices.normal.market;
+                cost = card.tcgplayer.prices.normal.market;
             }
             else{
             tempCard += `<img src="${card.images.large}" alt="${card.name}" class="card-click">
             <p>Market Price [${cardOptions[temprare]}]: $${card.tcgplayer.prices[cardOptions[temprare]].market}</p>`;
             total += card.tcgplayer.prices[cardOptions[temprare]].market;
+            cost = card.tcgplayer.prices[cardOptions[temprare]].market;
             }
         }else{  //other rarities
             tempCard += `<img src="${card.images.large}" alt="${card.name}" class="card-click">
             <p>Market Price [${cardOptions[temprare]}]: $${card.tcgplayer.prices[cardOptions[temprare]].market}</p>`;
             total += card.tcgplayer.prices[cardOptions[temprare]].market;
+            cost = card.tcgplayer.prices[cardOptions[temprare]].market;
         }
 
 
@@ -124,10 +133,12 @@ function displayCards() {
         displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class = 'card-image'>
         </li>`;
         cardDisplay.innerHTML += displayCard;
-
+        collectionDisplay.innerHTML += displayCard;
 
         document.querySelectorAll(".card-image").forEach(cardImg => {
-            cardImg.addEventListener("click", CardInfo);
+            cardImg.addEventListener("click", function() {
+                CardInfo.call(this, cost);
+            });
         });
 
 
@@ -221,5 +232,16 @@ const startPack = async () => {
 }
 
 
+function bagCollection(){
+    AllColletedCards.style.display = "block";
+
+}
+
+
+document.getElementById('header').addEventListener('click', function() {
+    AllColletedCards.style.display = "none";
+});
+
 startCard.addEventListener("click", startPack);
 startCard2nd.addEventListener("click", startPack);
+BagImg.addEventListener("click", bagCollection)
