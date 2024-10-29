@@ -193,8 +193,26 @@ header img{
     100% { transform: rotate(-360deg); }
 }
 
+#large-image {
+    width: 100%;
+    height: auto;
+    display: none; 
+    max-width: 40%;
+    max-height: 90%;
+}
 
-
+.card-Image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
 
 
 @media (max-width: 650px) {

@@ -49,6 +49,29 @@ function nextCard() {
 }
 
 
+function CardInfo(){
+    const clickedCard = this.src;
+
+    const tempImage = document.getElementById("large-image");
+    const tempdiv = document.getElementById("card-Image");
+
+    if (tempImage && tempdiv) {
+        tempImage.src = clickedCard;
+        tempImage.style.display = "block";
+        tempdiv.style.display = "flex";
+
+        tempdiv.addEventListener("click", function () {
+            tempImage.style.display = "none";
+            tempdiv.style.display = "none"; 
+        }, { once: true }); 
+
+    } else {
+        console.error("No pokemon in display");
+    }
+}
+
+
+
 function displayCards() {
 
     // cardList.innerHTML = '';
@@ -98,10 +121,17 @@ function displayCards() {
         
         cardList.innerHTML =  tempCard;
 
-        displayCard = `<li><img src="${card.images.large}" alt="${card.name}">
+        displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class = 'card-image'>
         </li>`;
         cardDisplay.innerHTML += displayCard;
-        
+
+
+        document.querySelectorAll(".card-image").forEach(cardImg => {
+            cardImg.addEventListener("click", CardInfo);
+        });
+
+
+
         const cardEle = document.querySelectorAll('.card-click');
         cardEle.forEach(card => {
             card.addEventListener('click', nextCard);
@@ -193,4 +223,3 @@ const startPack = async () => {
 
 startCard.addEventListener("click", startPack);
 startCard2nd.addEventListener("click", startPack);
-
