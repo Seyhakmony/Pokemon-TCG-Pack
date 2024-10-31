@@ -11,11 +11,18 @@ const loadingScreen = document.getElementById('Loading-Screen');
 const Bag = document.getElementById('Bag');
 const BagImg = document.getElementById('Bag-image');
 const AllColletedCards = document.getElementById('allCards');
+const clearBag = document.getElementById('clear-bag');
 
 let FinalCards = [];
 
+
 let total = 0;
 let current = 0;
+
+
+
+
+//local features
 async function getCard(rarity, Numcards) {
     try {
         const response = await fetch(`${apiURL}?q=rarity:"${rarity}"`);
@@ -133,8 +140,11 @@ function displayCards() {
         displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class = 'card-image'>
         </li>`;
         cardDisplay.innerHTML += displayCard;
+
         collectionDisplay.innerHTML += displayCard;
 
+        localStorage.setItem("Card-Bag", collectionDisplay.innerHTML)
+        
         document.querySelectorAll(".card-image").forEach(cardImg => {
             cardImg.addEventListener("click", function() {
                 CardInfo.call(this, cost);
@@ -233,8 +243,12 @@ const startPack = async () => {
 
 
 function bagCollection(){
-    AllColletedCards.style.display = "block";
+    const CardsInBag = localStorage.getItem("Card-Bag");
+    if (CardsInBag) { 
+        collectionDisplay.innerHTML = CardsInBag;
+    }
 
+    AllColletedCards.style.display = "block";
 }
 
 
@@ -242,6 +256,13 @@ document.getElementById('arrow').addEventListener('click', function() {
     AllColletedCards.style.display = "none";
 });
 
+function ClearBag(){
+    localStorage.clear();
+    collectionDisplay.innerHTML = "";
+    alert("Bag Cleared");
+}
+
 startCard.addEventListener("click", startPack);
 startCard2nd.addEventListener("click", startPack);
 BagImg.addEventListener("click", bagCollection)
+clearBag.addEventListener("click", ClearBag)

@@ -241,10 +241,13 @@ header img{
     justify-content: center;
     width: 100%;
     position: relative;
+    text-align: center;
 }
 .allCards header{
     margin-top: 1em;
     text-align: center;
+
+    margin-left: 0;
 }
 
 #PokeBagHeader {
@@ -264,6 +267,7 @@ header img{
     list-style-type: none;
     padding: 1em;
     margin: 0 auto;
+    width: fit-content;
     justify-items: center;
     align-items: center;
 }
@@ -278,7 +282,8 @@ header img{
 
 #arrow {
     cursor: pointer;
-
+    align-self: flex-start;
+    margin-left: 1.5em;
 }
 
 .arrow {
@@ -289,6 +294,19 @@ header img{
 
     margin-left: 1.5em;
   
+}
+
+
+#clear-bag{
+    
+    align-self: center;
+    padding: 0.5em;
+    font-size: 2vw;
+    margin: 1em 45vw;
+    width: fit-content;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center; 
 }
 
 
