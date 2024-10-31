@@ -83,7 +83,14 @@ function CardInfo(cost){
     }
 }
 
-
+function pickedImage(){
+    document.querySelectorAll(".card-image").forEach(cardImg => {
+        cardImg.addEventListener("click", function() {
+            const cost = this.dataset.cost;
+            CardInfo.call(this, cost);
+        });
+    });
+}
 
 function displayCards() {
 
@@ -137,7 +144,7 @@ function displayCards() {
         
         cardList.innerHTML =  tempCard;
 
-        displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class = 'card-image'>
+        displayCard = `<li><img src="${card.images.large}" alt="${card.name}" class = "card-image" data-cost="${cost}">
         </li>`;
         cardDisplay.innerHTML += displayCard;
 
@@ -145,11 +152,7 @@ function displayCards() {
 
         localStorage.setItem("Card-Bag", collectionDisplay.innerHTML)
         
-        document.querySelectorAll(".card-image").forEach(cardImg => {
-            cardImg.addEventListener("click", function() {
-                CardInfo.call(this, cost);
-            });
-        });
+        pickedImage();
 
 
 
@@ -229,15 +232,17 @@ const startPack = async () => {
     Bag.style.display = 'none';
     loadingScreen.style.display = 'flex';
 
+ 
     await getCard('Common', 5);
     await getCard('Uncommon', 3);
     await draw9and10();
     await draw9and10();
+    
 
     CardPack.style.display = "flex";
     Bag.style.display = 'block';
     loadingScreen.style.display = "none";
-
+    
     displayCards();
 }
 
@@ -246,6 +251,8 @@ function bagCollection(){
     const CardsInBag = localStorage.getItem("Card-Bag");
     if (CardsInBag) { 
         collectionDisplay.innerHTML = CardsInBag;
+        pickedImage();
+
     }
 
     AllColletedCards.style.display = "block";
