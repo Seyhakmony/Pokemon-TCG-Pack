@@ -55,7 +55,7 @@ function nextCard() {
         displayCards();
     } else {
         alert("You've viewed all the cards! Earned: $" + total.toFixed(2) + ".\nContinue to open more packs!!!");
-        startCard.src = '../images/pokemon-card.jpg';
+        startCard.src = '../images/pokemon-card.webp';
         startCard2nd.style.display = 'flex';
     }
 }
